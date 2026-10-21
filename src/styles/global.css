@@ -273,6 +273,21 @@ footer {
   font-size: 0.9rem;
 }
 
+footer p {
+  margin: 0;
+}
+
+.footer-meta {
+  margin-top: 10px;
+  max-width: 62ch;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.footer-meta a {
+  color: inherit;
+}
+
 @media (max-width: 760px) {
   .site-header {
     align-items: flex-start;

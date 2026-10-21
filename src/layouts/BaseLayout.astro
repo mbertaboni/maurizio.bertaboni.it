@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import { siteConfig } from "../site.config";
 
 interface Props {
   title?: string;
@@ -15,6 +16,7 @@ const {
 
 const path = Astro.url.pathname;
 const isEnglish = lang === "en";
+const goatcounterCode = siteConfig.goatcounterCode.trim();
 
 const nav = isEnglish
   ? [
@@ -32,6 +34,7 @@ const nav = isEnglish
 
 const languageHref = isEnglish ? "/" : "/en/";
 const languageLabel = isEnglish ? "IT" : "EN";
+const privacyHref = isEnglish ? "/en/privacy/" : "/privacy/";
 ---
 <!doctype html>
 <html lang={lang}>
@@ -40,7 +43,16 @@ const languageLabel = isEnglish ? "IT" : "EN";
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/" />
     <title>{title}</title>
+    {goatcounterCode && (
+      <script
+        is:inline
+        data-goatcounter={`https://${goatcounterCode}.goatcounter.com/count`}
+        async
+        src="https://gc.zgo.at/count.js"
+      />
+    )}
   </head>
   <body>
     <div class="shell">
@@ -61,6 +73,21 @@ const languageLabel = isEnglish ? "IT" : "EN";
 
       <footer>
         <p>Cybersecurity practitioner · Italy</p>
+        {isEnglish ? (
+          <p class="footer-meta">
+            Content © Maurizio Bertaboni ·{" "}
+            <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+            {" "}— please credit the source. Provided as is, no warranty.{" "}
+            <a href={privacyHref}>Privacy</a>
+          </p>
+        ) : (
+          <p class="footer-meta">
+            Contenuti © Maurizio Bertaboni ·{" "}
+            <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+            {" "}— cita la fonte. Forniti “as is”, senza garanzie.{" "}
+            <a href={privacyHref}>Privacy</a>
+          </p>
+        )}
       </footer>
     </div>
   </body>

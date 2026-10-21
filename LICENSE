@@ -1,0 +1,27 @@
+Content license
+===============
+
+The written content of this site (articles, notes, and similar text under
+src/content/ and equivalent published pages) is licensed under the
+Creative Commons Attribution 4.0 International License (CC BY 4.0).
+
+You may share and adapt the material for any purpose, including commercial,
+provided you give appropriate credit to Maurizio Bertaboni and link back to
+the source when reasonably practicable.
+
+Full license text:
+https://creativecommons.org/licenses/by/4.0/legalcode
+
+Summary:
+https://creativecommons.org/licenses/by/4.0/
+
+The content is provided “as is”, without warranty of any kind. Nothing here
+is certified advice, a security assessment, or a professional guarantee.
+
+
+Site code
+=========
+
+Unless otherwise noted, the website source code in this repository
+(layouts, components, styles, build config) may be reused under the
+MIT License.

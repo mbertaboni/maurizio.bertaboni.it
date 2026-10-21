@@ -1,0 +1,38 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionTitle from "../components/SectionTitle.astro";
+---
+<BaseLayout
+  title="Privacy · Maurizio Bertaboni"
+  description="Nota privacy del sito personale di Maurizio Bertaboni."
+  lang="it"
+>
+  <SectionTitle eyebrow="Privacy" title="Poche cose, dette chiaramente." />
+
+  <div class="prose">
+    <p>
+      Questo è un sito statico. Non uso cookie di profilazione e non c’è un banner
+      cookie perché non c’è nulla da accettare.
+    </p>
+
+    <h2>Analytics</h2>
+    <p>
+      Se attivo, uso <a href="https://www.goatcounter.com/">GoatCounter</a>:
+      contatori aggregati di visite e pagine (senza cookie, senza fingerprinting
+      invasivo). Serve a capire se qualcuno legge, non a costruirti un profilo.
+    </p>
+
+    <h2>Contenuti</h2>
+    <p>
+      Gli articoli sono sotto <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>:
+      puoi riusarli, ma cita la fonte. Sono forniti “as is”, senza certificazioni
+      né garanzie.
+    </p>
+
+    <h2>Contatti</h2>
+    <p>
+      Per domande su privacy o riuso dei contenuti: usa i canali indicati nelle
+      pagine About / Projects, oppure apri una issue sul repository del sito.
+    </p>
+  </div>
+</BaseLayout>

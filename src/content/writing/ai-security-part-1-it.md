@@ -1,7 +1,7 @@
 ---
 title: "Hey Ahi Security - Manuale per vecchi barbogi — Parte I - Smontiamo la macchina"
 description: "LLM, runtime, tokenizer, embedding, RAG, harness e agent: smontiamo la macchina prima di provare a metterla in sicurezza."
-pubDate: 2026-10-07
+pubDate: 2026-10-21
 language: "it"
 draft: false
 ---
@@ -23,19 +23,21 @@ Non parlo di intelligenza artificiale, perchè non ne so NULLA. Non sono un mate
 
 Ma andiamo con ordine (si fa per dire).
 
-Il tutto inizia quando qualcuno nella stanza inizia con "Agentic AI, che con un RAG [...] quantizzando il modello [...] l'harness, le skills e naturalmente i tools [...], prompt injection". "C'ho capito nulla". Cavolo ma che architettura bestiale, ci vogliono degli schemi e poi boh quanta roba complessa. Pensavo che nel 2026 le cose si semplificassero..ero io quello della roba complicata.
+Il tutto inizia quando qualcuno nella stanza inizia con *"Agentic AI, che con un RAG [...] quantizzando il modello [...] l'harness, le skills e naturalmente i tools [...], prompt injection"*. "C'ho capito nulla". Cavolo ma che architettura bestiale, ci vogliono degli schemi e poi boh quanta roba complessa. Pensavo che nel 2026 le cose si semplificassero..ero io quello della roba complicata.
 
 Nella frase sopra ho messo un sacco di odiosi puntini apposta perchè sono praticamente un boomer. tò.
 
 Per questioni di comprensione, semplificherò i concetti, anzi, avendoli smontati io stesso probabilmente sbaglierò pure, però ecco non mi perdo nei dettagli tecnici e metterò un sacco di asterischi tutte le volte che volete approfondire o che sono sicuro che non è proprio così.. ma per capirsi potete anche sbattervene degli asterischi.
 
-LLM o Modello.
+## LLM o Modello.
 
 È un file grosso che contiene dei dati. Punto.
 
 Prendiamo un bel file GGUF e apriamolo con Blocco Note.
 
 >Ahhhhh, che benessere i binary files in notepad.
+
+![Ahhhhh, che benessere i binary files in notepad.](https://media1.tenor.com/m/CNkEIuvqxSMAAAAd/sid-seixeiro-sid.gif)
 
 Ovviamente vedremo principalmente immondizia binaria incomprensibile. Però, concettualmente, lì dentro troviamo soprattutto due cose: metadati che descrivono il modello e NUMERI. Tanti, tanti, tanti NUMERI.
 Sono i parametri, o pesi, che il modello ha appreso durante il training.
@@ -53,9 +55,13 @@ Per capire come questo file diventa magia, dobbiamo rompere un po' il processo m
 
 Se il modello è un file praticamente morto, come abbiamo visto, il runtime è quel componente che consente di utilizzare il modello. Ovviamente il runtime stesso può essere visto come una serie di altri pezzettini. 
 
-In che senso ?
+![In che senso ?](https://i.ytimg.com/vi/QobHRfpLPTg/hqdefault.jpg)
+
 
 nel senso che quando noi mandiamo un input,il nostro input viene sottoposto a tokenizzazione.  
+
+## Token 
+
 *Token* significa letteralmente “gettone”. Per noi vecchi è sufficiente pensarlo come una delle unità elementari nelle quali il testo viene rappresentato per poter essere elaborato dal modello. Un token può essere una parola, un pezzo di parola, della punteggiatura e così via.
 
 
@@ -71,6 +77,8 @@ I logits possiamo immaginarli come dei punteggi associati ai possibili token suc
 Però per arrivare al punteggio, non c'è un tabella predefinita "parola" -> "punteggio" ma dei calcoli che avvengono "al volo", usando tutte le matrici di pesi del modello e il contesto corrente.
 
 è qui che dobbiamo staccarci dal concetto di parola e aprirci al concetto di "peso" ,"vettore" e "embedding".
+
+## Daccapo
 
 Di fatto, una delle primissime operazioni del modello è il lookup nella embedding matrix. 
 Proviamo a farci capire. Ipotizziamo l'input "il cielo è".
@@ -139,9 +147,12 @@ Il sampler quindi sceglie in base ai punteggi il token successivo e lo passa al 
 
 E arriviamo a un'altra parola idiota ma, a quanto pare, necessaria: inference, in italiano inferenza.
 
+## Inferenza
+
 Inferire — non *infierire* — deriva dal latino *inferre*: ricavare qualcosa a partire da ciò che abbiamo a disposizione.
 
 Attenzione però a non tradurlo mentalmente semplicemente con “dedurre”: non stiamo dicendo che il modello faccia necessariamente una deduzione logica (anzi)
+![](https://scontent-mxp2-1.xx.fbcdn.net/v/t39.30808-6/498242714_9709716825772770_6919300669561488707_n.jpg?stp=dst-jpg_tt6&cstp=mx720x960&ctp=s720x960&_nc_cat=104&ccb=1-7&_nc_sid=aa7b47&_nc_ohc=xpvgQg7XdNEQ7kNvwEmtywA&_nc_oc=AdrooZ-1nftnYJ73J-oW-A23v_Ns1LKYodwge1CnHcR_ywfU_wd_dQ_fLsKkPxuT0bE&_nc_zt=23&_nc_ht=scontent-mxp2-1.xx&_nc_gid=U4yKtzCLZRPP6zk6bJL73A&_nc_ss=7b289&oh=00_AQMQ5rUtXL_wTl9V1BlfhwTIvDgiKJugdWfMWMwWl7q_QA&oe=6ADF1A07)
 
 Quindi quello di cui ci siamo occupati è di descrivere un pochino l'inferenza *(madonna che brutto anche da leggere)* cioè il processo con cui il runtime usa un modello già addestrato per elaborare un input e produrre un output. 
 
@@ -162,6 +173,8 @@ O meglio, non bene.
 Perché se vogliamo aggiungere contesto più preciso al nostro modello e fargli dire meno stupidate probabilistiche o informazioni verificate  — cosa buona e giusta — dobbiamo avere un sistema per recuperarlo e metterglielo a disposizione.
 
 Qui entra in gioco l'ennesimo acronimo: RAG, Retrieval-Augmented Generation.
+
+## RAG
 
 RAG è un processo, non un database e nemmeno un altro LLM.
 
@@ -231,7 +244,7 @@ Gli abbiamo semplicemente messo davanti della roba in più prima di chiedergli d
 ___
 E ora ridiamo... ma se ho 600.000 documenti, come fa il retriever a capire quale è il pezzo più sensato da andare a prendere? 
 
-Ovviamente introduciamo un altro modello.
+Ovviamente introduciamo un *altro* modello.
 
 In qualche modo dovrò indicizzare questi documenti. E come?
 
@@ -274,6 +287,8 @@ E la cosa bella è che i tokenizer del retriever possono essere diversi dal toke
 e chi orchestra il tutto? L'harness, ricordi ?
 
 ___
+
+##Agentic
 
 ok adesso la parte agentic, che a sto punto è quasi una boiata.
 

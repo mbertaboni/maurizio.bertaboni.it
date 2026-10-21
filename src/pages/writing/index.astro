@@ -1,0 +1,26 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SectionTitle from "../../components/SectionTitle.astro";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("writing"))
+  .filter((post) => post.data.language === "it" && !post.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+<BaseLayout title="Writing · Maurizio Bertaboni" lang="it">
+  <SectionTitle eyebrow="Writing" title="Cose che ho provato a capire abbastanza bene da poterle spiegare." />
+
+  <div class="list">
+    {posts.map((post) => (
+      <article class="list-item">
+        <div>
+          <h2>{post.data.title}</h2>
+          <p>{post.data.description}</p>
+        </div>
+        <a href={post.data.externalUrl ?? `/writing/${post.id}/`}>
+          {post.data.externalUrl ? "Apri ↗" : "Leggi →"}
+        </a>
+      </article>
+    ))}
+  </div>
+</BaseLayout>

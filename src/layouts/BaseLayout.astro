@@ -1,0 +1,67 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  lang?: "it" | "en";
+}
+
+const {
+  title = "Maurizio Bertaboni",
+  description = "Cybersecurity practitioner. Taking complicated systems apart until the simple, correct model underneath becomes visible.",
+  lang = "it"
+} = Astro.props;
+
+const path = Astro.url.pathname;
+const isEnglish = lang === "en";
+
+const nav = isEnglish
+  ? [
+      ["/en/", "Home"],
+      ["/en/writing/", "Writing"],
+      ["/en/projects/", "Projects"],
+      ["/en/about/", "About"]
+    ]
+  : [
+      ["/", "Home"],
+      ["/writing/", "Writing"],
+      ["/projects/", "Projects"],
+      ["/about/", "About"]
+    ];
+
+const languageHref = isEnglish ? "/" : "/en/";
+const languageLabel = isEnglish ? "IT" : "EN";
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="shell">
+      <header class="site-header">
+        <a class="identity" href={isEnglish ? "/en/" : "/"}>Maurizio Bertaboni</a>
+
+        <nav aria-label="Main navigation">
+          {nav.map(([href, label]) => (
+            <a class:list={["nav-link", { active: path === href }]} href={href}>{label}</a>
+          ))}
+          <a class="language" href={languageHref}>{languageLabel}</a>
+        </nav>
+      </header>
+
+      <main>
+        <slot />
+      </main>
+
+      <footer>
+        <p>Cybersecurity practitioner · Italy</p>
+      </footer>
+    </div>
+  </body>
+</html>

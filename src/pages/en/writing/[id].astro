@@ -1,0 +1,46 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection(
+    "writing",
+    ({ data }) => data.language === "en" && !data.draft
+  );
+
+  return posts.map((post) => ({
+    params: { id: post.id },
+    props: { post }
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const formattedDate = post.data.pubDate.toLocaleDateString("en-GB", {
+  year: "numeric",
+  month: "long",
+  day: "numeric"
+});
+---
+<BaseLayout
+  title={`${post.data.title} · Maurizio Bertaboni`}
+  description={post.data.description}
+  lang="en"
+>
+  <article class="post">
+    <header class="post-header">
+      <p class="eyebrow">
+        <a href="/en/writing/">Writing</a>
+        <span aria-hidden="true"> · </span>
+        <time datetime={post.data.pubDate.toISOString()}>{formattedDate}</time>
+      </p>
+      <h1>{post.data.title}</h1>
+      <p class="lead">{post.data.description}</p>
+    </header>
+
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

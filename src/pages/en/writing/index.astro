@@ -8,7 +8,7 @@ const posts = (await getCollection("writing"))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 <BaseLayout title="Writing · Maurizio Bertaboni" lang="en">
-  <SectionTitle eyebrow="Writing" title="Things I tried to understand well enough to explain." />
+  <SectionTitle eyebrow="Writing" title="Things I've done or I tried to understand well enough to explain." />
 
   <div class="list">
     {posts.map((post) => (

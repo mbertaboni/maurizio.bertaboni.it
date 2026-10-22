@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import SectionTitle from "../../components/SectionTitle.astro";
+import { siteConfig } from "../../site.config";
 ---
 <BaseLayout title="About · Maurizio Bertaboni" lang="en">
   <SectionTitle eyebrow="About" title="Context, not credentials as an argument from authority." />
@@ -8,7 +9,7 @@ import SectionTitle from "../../components/SectionTitle.astro";
   <div class="prose">
     <p>
       I have worked in IT for more than twenty years and in cybersecurity since 2010.
-      I am CTO and co-owner of BeSafe, an Italian cybersecurity company.
+      I am CTO and co-owner of <a href="https://www.besafe.it">BeSafe</a>, an Italian cybersecurity company.
     </p>
 
     <p>
@@ -24,5 +25,11 @@ import SectionTitle from "../../components/SectionTitle.astro";
       <li>GIAC Advisory Board</li>
       <li>OSCP since 2010</li>
     </ul>
+
+    <p>
+      <a href={siteConfig.linkedin}>LinkedIn</a>
+      {" · "}
+      <a href={siteConfig.github}>GitHub</a>
+    </p>
   </div>
 </BaseLayout>

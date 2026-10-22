@@ -72,7 +72,13 @@ const privacyHref = isEnglish ? "/en/privacy/" : "/privacy/";
       </main>
 
       <footer>
-        <p>Cybersecurity practitioner · Italy</p>
+        <p>
+          Cybersecurity practitioner · Italy
+          {" · "}
+          <a href={siteConfig.linkedin}>LinkedIn</a>
+          {" · "}
+          <a href={siteConfig.github}>GitHub</a>
+        </p>
         {isEnglish ? (
           <p class="footer-meta">
             Content © Maurizio Bertaboni ·{" "}

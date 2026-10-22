@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SectionTitle from "../components/SectionTitle.astro";
+import { siteConfig } from "../site.config";
 ---
 <BaseLayout title="About · Maurizio Bertaboni" lang="it">
   <SectionTitle eyebrow="About" title="Breve contesto, non curriculum come argomento d'autorità." />
@@ -25,6 +26,13 @@ import SectionTitle from "../components/SectionTitle.astro";
       <li>OSCP dal 2010</li>
       <li>Molte certifiche di vendor vivi, ma anche morti</li>
     </ul>
-<p>Se serve il cv, chiedimelo</p>
+
+    <p>Se serve il cv, chiedimelo.</p>
+
+    <p>
+      <a href={siteConfig.linkedin}>LinkedIn</a>
+      {" · "}
+      <a href={siteConfig.github}>GitHub</a>
+    </p>
   </div>
 </BaseLayout>

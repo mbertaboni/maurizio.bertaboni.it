@@ -8,24 +8,27 @@ draft: false
 
 Ah, quest'articolo non è scritto con l'AI. Perchè altrimenti non ti viene voglia di leggerlo. E ci impieghi dai 12 ai 15 minuti. Prenditi del tempo.
 
-Ok, ho impiegato decisamente troppo tempo e aspettato troppo tempo prima di sedermi e iniziare a mettere a posto.
+____
+
+Ok, ho impiegato decisamente troppo tempo e aspettato troppo tempo prima di decidermi di mettere a posto.
 
 Succede anche con il mio garage, c'è dentro di tutto e alla fine non ci capisco più niente e allora mi fermo e re-inizio a pensare a dove mettere le cose, dare un senso alla posizione degli oggetti a cosa mi serve e cosa no.
 
-Sto ovviamente parlando di AI. 
+Sto *ovviamente* parlando di AI. 
 
-Poi, essendo nel ramo cybersecurity, il tema è AI security, insomma quella cosa di cui tutti parlano ma nessuno sa bene cosa cavolo sta dicendo. Tutti annuiscono e fingono di capire che non è bello dire "c'ho capito un tubo". 
+Poi, essendo nel ramo cybersecurity, il tema precisamente è AI security, insomma quella cosa di cui tutti parlano ma nessuno sa bene cosa cavolo sta dicendo. Tutti annuiscono e fingono di capire che non è bello dire "c'ho capito un tubo". 
+
 Poi è arrivata la tempesta di parole. Un sacco di parole. 
 Ti senti inadeguato. E allora ok, ripartiamo, ma per un "vecchio" dello *nix come me, è molto più facile destrutturare, riconcepire, riordinare.
 Quindi mi scrivo queste righe sostanzialmente per chiarirmi le idee e magari con l'auspicio di chiarirle anche a qualcun altro. 
 
-Non parlo di intelligenza artificiale, perchè non ne so NULLA. Non sono un matematico e quindi ne sono un fruitore, la curiosità c'è, ma non ho autorevolezza sufficiente a stare qui a raccontarvi come funziona un LLM o altro. Ci sono bravissimi professionisti là fuori che sanno le cose (o che millantano bene). io no, preferisco dire che non lo so.
+Non parlo di intelligenza artificiale, perchè non ne so NULLA. Non sono un matematico. Sono un semplice curioso fruitore, senza autorevolezza sufficiente a stare qui a raccontarvi come funziona un LLM o altro. Ci sono bravissimi professionisti là fuori che sanno le cose (o che millantano bene). Io no, preferisco dire che non lo so.
 
 Ma andiamo con ordine (si fa per dire).
 
 Il tutto inizia quando qualcuno nella stanza inizia con *"Agentic AI, che con un RAG [...] quantizzando il modello [...] l'harness, le skills e naturalmente i tools [...], prompt injection"*. "C'ho capito nulla". Cavolo ma che architettura bestiale, ci vogliono degli schemi e poi boh quanta roba complessa. Pensavo che nel 2026 le cose si semplificassero..ero io quello della roba complicata.
 
-Nella frase sopra ho messo un sacco di odiosi puntini apposta perchè sono praticamente un boomer. tò.
+Nella frase sopra ho messo un sacco di odiosi puntini apposta perchè sono praticamente un boomer. ecco.
 
 Per questioni di comprensione, semplificherò i concetti, anzi, avendoli smontati io stesso probabilmente sbaglierò pure, però ecco non mi perdo nei dettagli tecnici e metterò un sacco di asterischi tutte le volte che volete approfondire o che sono sicuro che non è proprio così.. ma per capirsi potete anche sbattervene degli asterischi.
 
@@ -41,7 +44,6 @@ Prendiamo un bel file GGUF e apriamolo con Blocco Note.
 
 Ovviamente vedremo principalmente immondizia binaria incomprensibile. Però, concettualmente, lì dentro troviamo soprattutto due cose: metadati che descrivono il modello e NUMERI. Tanti, tanti, tanti NUMERI.
 Sono i parametri, o pesi, che il modello ha appreso durante il training.
-
 
 La macchina, semplificando parecchio (*), deve avere in memoria i pesi necessari a farlo funzionare: più il modello è grosso, più memoria servirà. RAM, oppure VRAM, che va molto più VVVVeloce.
 
@@ -61,14 +63,11 @@ nel senso che quando noi mandiamo un input,il nostro input viene sottoposto a to
 
 ## Token 
 
-*Token* significa letteralmente “gettone”. Per noi vecchi è sufficiente pensarlo come una delle unità elementari nelle quali il testo viene rappresentato per poter essere elaborato dal modello. Un token può essere una parola, un pezzo di parola, della punteggiatura e così via.
-
+*Token* significa letteralmente “gettone”. Per noi vecchi è sufficiente pensarlo come una delle unità elementari nelle quali il testo viene rappresentato per poter essere elaborato dal modello. Un token può essere una parola, un *pezzo* di parola, della punteggiatura e così via.
 
 Prima di arrivare al modello, quindi, il nostro input viene "preparato" da un cosiddetto "tokenizer". Questo "componente" è distinto dal modello e dell'engine, anche se nella pratica è spesso integrato nello stesso software che usiamo per il runtime e si occupa di creare la sequenza di token — più precisamente nei relativi identificatori numerici — che quel modello sa elaborare.
 
-
 Il suo lavoro è trasformare il testo in una sequenza di identificatori numerici, i token ID, appartenenti al vocabolario specifico di quel modello.
-
 
 L'output che ci aspettiamo logicamente sono i *logits*.
 I logits possiamo immaginarli come dei punteggi associati ai possibili token successivi.
@@ -89,10 +88,10 @@ il tokenizer produrrà qualcosa tipo
 
 Questi sono gli ID token.
 
-A sto punto il modello non ragiona direttamente sul numero 452 come se avesse un significato particolare.
+A sto punto il modello **non** ragiona direttamente sul numero 452 come se avesse un significato particolare.
 Il numero 452, nel nostro esempio, identifica un certo token nel vocabolario, ma il modello non tratta matematicamente il numero 452 come se il suo valore numerico significasse qualcosa.
 
-452 viene usato invece come indice.
+452 viene usato invece come *indice*.
 
 Il modello abbiamo detto che contiene miliardi di pesi organizzati in varie matrici; una di queste è la embedding matrix, che associa i token ID ai loro vettori iniziali.
 Una delle prime operazioni del modello consiste nel consultare proprio questa matrice e recuperare la riga corrispondente a quel token ID.

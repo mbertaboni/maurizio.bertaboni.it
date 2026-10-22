@@ -9,5 +9,7 @@
  * Leave empty to disable analytics.
  */
 export const siteConfig = {
-  goatcounterCode: "mbertaboni"
+  goatcounterCode: "mbertaboni",
+  linkedin: "https://www.linkedin.com/in/maurizio-bertaboni",
+  github: "https://github.com/mbertaboni"
 };

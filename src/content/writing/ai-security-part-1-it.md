@@ -57,7 +57,6 @@ Se il modello è un file praticamente morto, come abbiamo visto, il runtime è q
 
 ![In che senso ?](https://i.ytimg.com/vi/QobHRfpLPTg/hqdefault.jpg)
 
-
 nel senso che quando noi mandiamo un input,il nostro input viene sottoposto a tokenizzazione.  
 
 ## Token 

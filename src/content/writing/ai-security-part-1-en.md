@@ -1,7 +1,7 @@
 ---
 title: "Hey Ahi Security - Manual for old grumpy IT pros — Part I - Take the machine apart"
 description: "LLMs, runtimes, tokenizers, embeddings, RAG, harnesses and agents: take the machine apart before trying to secure it."
-pubDate: 2026-10-07
+pubDate: 2026-10-21
 language: "en"
 draft: false
 ---
@@ -23,13 +23,13 @@ I'm not talking about artificial intelligence, because I know NOTHING about it. 
 
 But let's go in order (sort of).
 
-It all starts when someone in the room begins with "Agentic AI, which with a RAG [...] quantizing the model [...] the harness, the skills and of course the tools [...], prompt injection." "I got nothing." Damn, what a monstrous architecture — you need diagrams and then, I don't know, so much complicated stuff. I thought things would get simpler in 2026… I used to be the one with the complicated stuff.
+It all starts when someone in the room begins with *"Agentic AI, which with a RAG [...] quantizing the model [...] the harness, the skills and of course the tools [...], prompt injection."* "I got nothing." Damn, what a monstrous architecture — you need diagrams and then, I don't know, so much complicated stuff. I thought things would get simpler in 2026… I used to be the one with the complicated stuff.
 
 In the sentence above I put a bunch of annoying dots on purpose because I'm basically a boomer. There.
 
 For the sake of understanding, I'll simplify the concepts — hell, having taken them apart myself I'll probably get some of it wrong — but I won't get lost in technical details, and I'll put a lot of asterisks whenever you might want to dig deeper or whenever I'm sure it's not exactly like that… but to get the idea you can also ignore the asterisks.
 
-LLM or Model.
+##LLM or Model.
 
 It's a big file that contains data. Period.
 
@@ -37,9 +37,10 @@ Let's take a nice GGUF file and open it with Notepad.
 
 >Ahhhhh, nothing like binary files in Notepad.
 
+!(https://media1.tenor.com/m/CNkEIuvqxSMAAAAd/sid-seixeiro-sid.gif)
+
 Obviously we'll mostly see incomprehensible binary garbage. But conceptually, inside we'll find mainly two things: metadata describing the model, and NUMBERS. Lots and lots and lots of NUMBERS.
 Those are the parameters, or weights, that the model learned during training.
-
 
 The machine, simplifying a lot (*), needs to hold in memory the weights required to make it work: the bigger the model, the more memory you'll need. RAM, or VRAM, which is much FFFFFasster.
 
@@ -56,6 +57,9 @@ If the model is a practically dead file, as we've seen, the runtime is the compo
 In what sense?
 
 In the sense that when we send an input, that input goes through tokenization.
+
+##Token
+
 *Token* literally means “token / chip.” For us old-timers it's enough to think of it as one of the elementary units into which text is represented so the model can process it. A token can be a word, a piece of a word, punctuation, and so on.
 
 
@@ -64,13 +68,14 @@ Before reaching the model, then, our input is "prepared" by a so-called "tokeniz
 
 Its job is to turn text into a sequence of numeric identifiers, the token IDs, belonging to that model's specific vocabulary.
 
-
 The output we logically expect are the *logits*.
 We can think of logits as scores associated with possible next tokens.
 
 But to get to those scores, there is no predefined "word" → "score" table — there are calculations that happen "on the fly," using all the model's weight matrices and the current context.
 
 This is where we have to leave the idea of "word" behind and open up to "weight," "vector," and "embedding."
+
+##Starting Over
 
 In fact, one of the very first operations in the model is a lookup in the embedding matrix.
 Let's try to make this clear. Suppose the input is "the sky is."
@@ -139,7 +144,9 @@ The sampler then chooses the next token based on the scores and passes it to the
 
 And here we get to another stupid but, apparently, necessary word: inference.
 
-To infer — not to *inflict* — comes from the Latin *inferre*: to draw something out of what we have available.
+##Inference
+
+To infer comes from the Latin *inferre*: to draw something out of what we have available.
 
 But careful not to translate it mentally simply as “deduce”: we're not saying the model necessarily does logical deduction (quite the opposite).
 
@@ -162,6 +169,8 @@ Or rather, not fine.
 Because if we want to add more precise context to our model and make it say fewer probabilistic nonsense statements or verified information — a good and proper thing — we need a system to retrieve that context and put it in front of the model.
 
 Enter the next acronym: RAG, Retrieval-Augmented Generation.
+
+##RAG
 
 RAG is a process, not a database and not another LLM.
 
@@ -275,7 +284,9 @@ And who orchestrates all of this? The harness — remember?
 
 ___
 
-Ok, now the agentic part, which at this point is almost nonsense.
+##Agentic
+
+Ok, now the agentic part, which at this point is almost "nonsense".
 
 If before the harness limited itself to preparing the input and asking for an answer, now the harness lets the model choose the next step.
 

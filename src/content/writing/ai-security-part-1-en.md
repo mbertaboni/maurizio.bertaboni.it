@@ -8,28 +8,31 @@ draft: false
 
 Ah, this article was not written with AI. Because otherwise you wouldn't feel like reading it. And it takes about 12 to 15 minutes. Take your time.
 
-Ok, I spent way too long waiting around before sitting down and starting to put things in order.
+____
+
+Ok, I spent way too long waiting around before deciding to put things in order.
 
 Same thing happens with my garage: there's everything in there and eventually I can't make sense of any of it, so I stop and start over — thinking about where things belong, making sense of their place, what I need and what I don't.
 
-Obviously I'm talking about AI.
+I am *obviously* talking about AI.
 
-Then, being in cybersecurity, the topic is AI security — that thing everyone talks about while nobody really knows what the hell they're saying. Everyone nods and pretends to understand, because it's not cool to say "I didn't get a damn thing."
+Then, being in cybersecurity, the topic is precisely AI security — that thing everyone talks about while nobody really knows what the hell they're saying. Everyone nods and pretends to understand, because it's not cool to say "I didn't get a damn thing."
+
 Then came the word storm. Lots of words.
 You feel inadequate. So alright, let's start over — but for an old *nix hand like me, it's much easier to take things apart, reframe them, put them back in order.
 So I'm writing these lines basically to clear my own head, and maybe with the hope of clearing someone else's too.
 
-I'm not talking about artificial intelligence, because I know NOTHING about it. I'm not a mathematician, so I'm a user: curiosity is there, but I don't have enough authority to sit here and tell you how an LLM works or anything else. There are excellent professionals out there who know their stuff (or who bluff very well). Not me — I prefer to say I don't know.
+I'm not talking about artificial intelligence, because I know NOTHING about it. I'm not a mathematician. I'm just a curious user, without enough authority to sit here and tell you how an LLM works or anything else. There are excellent professionals out there who know their stuff (or who bluff very well). Not me — I prefer to say I don't know.
 
 But let's go in order (sort of).
 
-It all starts when someone in the room begins with *"Agentic AI, which with a RAG [...] quantizing the model [...] the harness, the skills and of course the tools [...], prompt injection."* "I got nothing." Damn, what a monstrous architecture — you need diagrams and then, I don't know, so much complicated stuff. I thought things would get simpler in 2026… I used to be the one with the complicated stuff.
+It all starts when someone in the room begins with *"Agentic AI, which with a RAG [...] quantizing the model [...] the harness, the skills and of course the tools [...], prompt injection"*. "I got nothing." Damn, what a monstrous architecture — you need diagrams and then, I don't know, so much complicated stuff. I thought things would get simpler in 2026… I used to be the one with the complicated stuff.
 
 In the sentence above I put a bunch of annoying dots on purpose because I'm basically a boomer. There.
 
 For the sake of understanding, I'll simplify the concepts — hell, having taken them apart myself I'll probably get some of it wrong — but I won't get lost in technical details, and I'll put a lot of asterisks whenever you might want to dig deeper or whenever I'm sure it's not exactly like that… but to get the idea you can also ignore the asterisks.
 
-##LLM or Model.
+## LLM or Model.
 
 It's a big file that contains data. Period.
 
@@ -37,7 +40,7 @@ Let's take a nice GGUF file and open it with Notepad.
 
 >Ahhhhh, nothing like binary files in Notepad.
 
-!(https://media1.tenor.com/m/CNkEIuvqxSMAAAAd/sid-seixeiro-sid.gif)
+![Ahhhhh, nothing like binary files in Notepad.](https://media1.tenor.com/m/CNkEIuvqxSMAAAAd/sid-seixeiro-sid.gif)
 
 Obviously we'll mostly see incomprehensible binary garbage. But conceptually, inside we'll find mainly two things: metadata describing the model, and NUMBERS. Lots and lots and lots of NUMBERS.
 Those are the parameters, or weights, that the model learned during training.
@@ -56,15 +59,13 @@ If the model is a practically dead file, as we've seen, the runtime is the compo
 
 In what sense?
 
-In the sense that when we send an input, that input goes through tokenization.
+in the sense that when we send an input, that input goes through tokenization.
 
-##Token
+## Token
 
-*Token* literally means “token / chip.” For us old-timers it's enough to think of it as one of the elementary units into which text is represented so the model can process it. A token can be a word, a piece of a word, punctuation, and so on.
-
+*Token* literally means “token / chip.” For us old-timers it's enough to think of it as one of the elementary units into which text is represented so the model can process it. A token can be a word, a *piece* of a word, punctuation, and so on.
 
 Before reaching the model, then, our input is "prepared" by a so-called "tokenizer." This "component" is distinct from the model and the engine, even though in practice it's often integrated into the same software we use for the runtime, and its job is to create the sequence of tokens — more precisely their numeric identifiers — that that model knows how to process.
-
 
 Its job is to turn text into a sequence of numeric identifiers, the token IDs, belonging to that model's specific vocabulary.
 
@@ -75,7 +76,7 @@ But to get to those scores, there is no predefined "word" → "score" table — 
 
 This is where we have to leave the idea of "word" behind and open up to "weight," "vector," and "embedding."
 
-##Starting Over
+## Starting over
 
 In fact, one of the very first operations in the model is a lookup in the embedding matrix.
 Let's try to make this clear. Suppose the input is "the sky is."
@@ -87,10 +88,10 @@ The tokenizer will produce something like
 
 These are the token IDs.
 
-At this point the model does not reason directly on the number 452 as if it had some special meaning.
+At this point the model does **not** reason directly on the number 452 as if it had some special meaning.
 The number 452, in our example, identifies a certain token in the vocabulary, but the model does not treat the number 452 mathematically as if its numeric value meant something.
 
-452 is used as an index instead.
+452 is used as an *index* instead.
 
 We've said the model contains billions of weights organized into various matrices; one of these is the embedding matrix, which maps token IDs to their initial vectors.
 One of the first operations in the model is consulting exactly this matrix and retrieving the row corresponding to that token ID.
@@ -144,11 +145,12 @@ The sampler then chooses the next token based on the scores and passes it to the
 
 And here we get to another stupid but, apparently, necessary word: inference.
 
-##Inference
+## Inference
 
-To infer comes from the Latin *inferre*: to draw something out of what we have available.
+To infer — not to *inflict* — comes from the Latin *inferre*: to draw something out of what we have available.
 
 But careful not to translate it mentally simply as “deduce”: we're not saying the model necessarily does logical deduction (quite the opposite).
+![](https://scontent-mxp2-1.xx.fbcdn.net/v/t39.30808-6/498242714_9709716825772770_6919300669561488707_n.jpg?stp=dst-jpg_tt6&cstp=mx720x960&ctp=s720x960&_nc_cat=104&ccb=1-7&_nc_sid=aa7b47&_nc_ohc=xpvgQg7XdNEQ7kNvwEmtywA&_nc_oc=AdrooZ-1nftnYJ73J-oW-A23v_Ns1LKYodwge1CnHcR_ywfU_wd_dQ_fLsKkPxuT0bE&_nc_zt=23&_nc_ht=scontent-mxp2-1.xx&_nc_gid=U4yKtzCLZRPP6zk6bJL73A&_nc_ss=7b289&oh=00_AQMQ5rUtXL_wTl9V1BlfhwTIvDgiKJugdWfMWMwWl7q_QA&oe=6ADF1A07)
 
 So what we've been doing is describing inference a little *(god, even reading that word is ugly)* — that is, the process by which the runtime uses an already trained model to process an input and produce an output.
 
@@ -166,11 +168,11 @@ Fine.
 
 Or rather, not fine.
 
-Because if we want to add more precise context to our model and make it say fewer probabilistic nonsense statements or verified information — a good and proper thing — we need a system to retrieve that context and put it in front of the model.
+Because if we want to add more precise context to our model and make it say fewer probabilistic nonsense statements — or verified information — a good and proper thing — we need a system to retrieve that context and put it in front of the model.
 
 Enter the next acronym: RAG, Retrieval-Augmented Generation.
 
-##RAG
+## RAG
 
 RAG is a process, not a database and not another LLM.
 
@@ -187,6 +189,8 @@ The model, for its part, doesn't necessarily need to know any of this.
 It simply receives more stuff to read.
 
 And who retrieves the context?
+
+![](https://artero.com/media/wysiwyg/Golden_Retriever2_1_.png)
 
 The **retriever**.
 
@@ -240,7 +244,7 @@ We simply put more stuff in front of it before asking it to answer.
 ___
 And now we laugh… but if I have 600,000 documents, how does the retriever figure out which piece is the most sensible one to grab?
 
-Obviously we introduce another model.
+Obviously we introduce *another* model.
 
 Somehow I have to index these documents. And how?
 
@@ -284,9 +288,9 @@ And who orchestrates all of this? The harness — remember?
 
 ___
 
-##Agentic
+## Agentic
 
-Ok, now the agentic part, which at this point is almost "nonsense".
+ok now the agentic part, which at this point is almost nonsense.
 
 If before the harness limited itself to preparing the input and asking for an answer, now the harness lets the model choose the next step.
 

@@ -190,6 +190,8 @@ Riceve semplicemente più roba da leggere.
 
 E chi recupera il contesto?
 
+![](https://artero.com/media/wysiwyg/Golden_Retriever2_1_.png)
+
 Il **retriever**.
 
 Ennesimo termine che sembra indicare oddiochissàcherobaè. In realtà il retriever, oltre ad essere una interessante razza canina, si riferisce principalmente ad un ruolo: qualcosa che, ricevuta una richiesta, va a recuperare informazioni pertinenti da una sorgente.

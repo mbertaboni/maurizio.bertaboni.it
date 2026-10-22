@@ -35,6 +35,8 @@ const nav = isEnglish
 const languageHref = isEnglish ? "/" : "/en/";
 const languageLabel = isEnglish ? "IT" : "EN";
 const privacyHref = isEnglish ? "/en/privacy/" : "/privacy/";
+const themeLabelLight = isEnglish ? "Light" : "Chiaro";
+const themeLabelDark = isEnglish ? "Dark" : "Scuro";
 ---
 <!doctype html>
 <html lang={lang}>
@@ -44,7 +46,24 @@ const privacyHref = isEnglish ? "/en/privacy/" : "/privacy/";
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <title>{title}</title>
+    <script is:inline>
+      (function () {
+        try {
+          var stored = localStorage.getItem("theme");
+          var theme = stored === "dark" ? "dark" : "light";
+          document.documentElement.setAttribute("data-theme", theme);
+        } catch (e) {
+          document.documentElement.setAttribute("data-theme", "light");
+        }
+      })();
+    </script>
     {goatcounterCode && (
       <script
         is:inline
@@ -64,6 +83,15 @@ const privacyHref = isEnglish ? "/en/privacy/" : "/privacy/";
             <a class:list={["nav-link", { active: path === href }]} href={href}>{label}</a>
           ))}
           <a class="language" href={languageHref}>{languageLabel}</a>
+          <button
+            type="button"
+            class="theme-toggle"
+            data-label-light={themeLabelLight}
+            data-label-dark={themeLabelDark}
+            aria-label={isEnglish ? "Toggle color theme" : "Cambia tema chiaro/scuro"}
+          >
+            {themeLabelDark}
+          </button>
         </nav>
       </header>
 
@@ -96,5 +124,37 @@ const privacyHref = isEnglish ? "/en/privacy/" : "/privacy/";
         )}
       </footer>
     </div>
+
+    <script is:inline>
+      (function () {
+        var key = "theme";
+        var root = document.documentElement;
+        var button = document.querySelector(".theme-toggle");
+        if (!button) return;
+
+        function current() {
+          return root.getAttribute("data-theme") === "dark" ? "dark" : "light";
+        }
+
+        function syncLabel() {
+          var theme = current();
+          button.textContent =
+            theme === "dark"
+              ? button.getAttribute("data-label-light")
+              : button.getAttribute("data-label-dark");
+        }
+
+        syncLabel();
+
+        button.addEventListener("click", function () {
+          var next = current() === "dark" ? "light" : "dark";
+          root.setAttribute("data-theme", next);
+          try {
+            localStorage.setItem(key, next);
+          } catch (e) {}
+          syncLabel();
+        });
+      })();
+    </script>
   </body>
 </html>

@@ -24,7 +24,7 @@ Ed è qui che iniziamo davvero a dare le chiavi di casa alla macchina.
 
 Abbiamo già incontrato questa parola.
 
-Un **tool** non è altro che qualcosa che il nostro harness mette a disposizione del modello affinché possa compiere un'azione.
+Un **tool** non è altro che qualcosa che il nostro *harness* mette a disposizione del modello affinché possa compiere un'azione.
 
 Niente magia nemmeno qui.
 
@@ -92,7 +92,7 @@ E possiamo ricominciare.
 
 ## Ed ecco il loop
 
-Arg. Eccolo, l'**agentic**. 
+ed ecccolo di nuovo, l'**agentic**. 
 
 In forma brutale:
 
@@ -156,7 +156,7 @@ e magari RAG, memoria, skill e tutta l'altra roba che abbiamo già visto.
 
 ## Le skill
 
-Qui possiamo smontare un altro termine altisonante.
+Qui possiamo smontare un'altra buzzword.
 
 Una **skill** è spesso banalmente un insieme di istruzioni che spiegano all'agent come affrontare un determinato tipo di attività.
 
@@ -174,7 +174,6 @@ che dice qualcosa del tipo:
 6. esegui i test;
 7. verifica il risultato.
 
-
 Anche qui, niente magia nera.
 
 Può essere 
@@ -190,6 +189,8 @@ Il concetto che ci interessa è:
 Il martello è un tool.
 
 Saper fare il falegname è una skill.
+
+*Vi sentite un po' più fighi adesso che capite tutte queste buzzword da quattro soldi eh ?*
 
 ## Autonomia
 
@@ -225,7 +226,7 @@ Non abbiamo quindi solo un sistema probabilistico.
 
 Abbiamo un sistema probabilistico capace di **concatenare autonomamente le conseguenze delle proprie decisioni**.
 
-E questa, molto più di tutte le parole altisonanti che abbiamo incontrato finora, è probabilmente la cosa da tenere davvero a mente quando parliamo di Agentic AI.
+E questa, molto più di tutte le cose che abbiamo incontrato finora, è probabilmente la cosa da tenere davvero a mente quando parliamo di Agentic AI.
 
 Prima il modello poteva dire una stupidaggine.
 
@@ -237,25 +238,17 @@ Prima di parlare di attacchi veri e propri, però, c'è un'altra cosa che vale l
 
 Non serve necessariamente un attaccante per creare un problema.
 
-A volte basta usare male la tecnologia.
+A volte *(hint: spesso)* basta usare male la tecnologia.
 
 ### Workforce
 
-L'introduzione di questi strumenti cambia il modo in cui le persone lavorano.
+L'introduzione di questi strumenti di AI cambia il modo in cui le persone lavorano.
 
 E questo non significa soltanto “l'AI ci ruberà il lavoro”, che è la versione da titolo di giornale.
 
-Il problema reale è più sottile.
+Diciamo che comunque per i paranoici c'è un rischio che è "se delego tutto, non son più capace di far nulla. I junior non imparano, i senior si fidano e non controllano."
 
-Se iniziamo a delegare continuamente attività al modello, rischiamo di perdere visibilità su come quelle attività vengono effettivamente svolte.
-
-Un junior può imparare meno.
-
-Un senior può iniziare a fidarsi troppo di un output apparentemente plausibile.
-
-Un team può incorporare codice che nessuno ha davvero letto.
-
-Un processo può diventare dipendente da uno strumento che nessuno saprebbe sostituire manualmente.
+Fino a visioni più catastrofiche tipo che un team di sviluppo può incorporare codice che nessuno ha davvero letto. Oppure un processo può diventare dipendente da uno strumento che nessuno saprebbe sostituire manualmente.
 
 Il rischio quindi non è soltanto che l'AI faccia male qualcosa.
 
@@ -296,7 +289,7 @@ Data residency?
 
 Retention?
 
-Il punto non è sostenere che “tutti i provider si allenano sui vostri segreti”.
+Il punto non è fare terrorismo dicendo che “tutti i vostri dati, pure quelli segreti sono già usati per fare training”.
 
 Non è necessariamente vero e dipende dal servizio utilizzato.
 
@@ -304,7 +297,15 @@ Il punto è molto più banale:
 
 **se non lo sapete, avete già un problema.**
 
-È lo stesso motivo per cui non spediremmo normalmente un dump del database aziendale a un servizio sconosciuto solo perché ha una bella interfaccia.
+E se pensate che basti cambiare provider per risolvere il problema, c'è una storia interessante da leggere.
+
+Stefano Conter (lui ha iniziato a fare i compiti ben prima del sottoscritto) ha raccontato di aver cambiato provider per il suo assistente di coding, pur essendo soddisfatto di come funzionava. Non perché il modello fosse scarso, ma perché voleva capire meglio che fine facessero i dati che gli affidava.
+
+Spoiler: cambiare fornitore non significa aver risolto automaticamente il problema. Significa, nella migliore delle ipotesi, aver scelto consapevolmente condizioni diverse.
+
+Ne parla qui: [I switched AI providers. I’m not convinced I solved anything..](https://conterstefano.it/blog/switched-ai-providers-data-governance/)
+
+È lo stesso motivo per cui non spediremmo normalmente il dump del database aziendale a un servizio online solo perché ha una bella interfaccia.
 
 Data classification, privacy, governance e procurement continuano a esistere anche quando la casella di testo ha scritto sopra “AI”.
 
@@ -356,7 +357,6 @@ Anche questo, tutto sommato, è un problema abbastanza tradizionale:
 
 ___
 
-
 ## Roba che arriva da marte ?
 
 Quindi, no, non è roba che arriva da Marte, anzi alla fine tutto ha un'aria terribilmente familiare.
@@ -381,7 +381,7 @@ Abbiamo
 - dipendenze.
 - confini tra zone con livelli di trust differenti.
 
-Insomma, abbiamo dei trust boundary (eh che parolone !)
+Insomma, abbiamo dei "trust boundary" (eh che parolone !)
 
 E questa, per chi fa cybersecurity, dovrebbe essere una sensazione abbastanza rassicurante.
 

@@ -1,5 +1,5 @@
 ---
-title: "Hey Ahi Security - Manual for old grumpy IT pros — Part I - Take the machine apart"
+title: "Hey Ahi Security - A Manual for Grumpy Old IT Pros — Part I - Take the machine apart"
 description: "LLMs, runtimes, tokenizers, embeddings, RAG, harnesses and agents: take the machine apart before trying to secure it."
 pubDate: 2026-10-21
 language: "en"

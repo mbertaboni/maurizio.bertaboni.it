@@ -1,5 +1,5 @@
 ---
-title: "Hey Ahi Security - Manual for old grumpy IT pros — Part II - Now We Hand It the House Keys"
+title: "Hey Ahi Security - A Manual for Grumpy Old IT Pros — Part II - Now We Hand It the House Keys"
 description: "When it stops answering and starts acting."
 pubDate: 2026-10-23
 language: "en"

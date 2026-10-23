@@ -1,12 +1,12 @@
 ---
 title: "Hey Ahi Security - Manual for old grumpy IT pros — Part II - Now we give it the house keys"
 description: "When it stops answering and starts acting."
-pubDate: 2026-10-08
+pubDate: 2026-10-23
 language: "en"
-draft: true
+draft: false
 ---
 
-I don't know how hard the previous stuff was to read, but now let's get to us — that is, let's start talking about security.
+I don't know how hard the previous stuff was to read, but now let's go on.
 
 Ok, short recap. Actually no. In plain terms, we had gotten here.
 

@@ -45,7 +45,7 @@ Let's take a nice GGUF file and open it with Notepad.
 Obviously we'll mostly see incomprehensible binary garbage. But conceptually, inside we'll find mainly two things: metadata describing the model, and NUMBERS. Lots and lots and lots of NUMBERS.
 Those are the parameters, or weights, that the model learned during training.
 
-The machine, simplifying a lot (*), needs to hold in memory the weights required to make it work: the bigger the model, the more memory you'll need. RAM, or VRAM, which is much FFFFFasster.
+The machine, simplifying a lot (*), needs to hold in memory the weights required to make it work: the bigger the model, the more memory you'll need. RAM, or VRAM, which is ram VVVVery fast.. :D
 
 (*) Yes, we can do offloading, memory mapping, distribute the model across multiple devices and a bunch of other nonsense. For now we don't care.
 

@@ -1,12 +1,12 @@
 ---
 title: "Hey Ahi Security - Manuale per vecchi barbogi — Parte II - Adesso diamole le chiavi di casa"
 description: "Quando smette di rispondere e inizia ad agire."
-pubDate: 2026-10-08
+pubDate: 2026-10-23
 language: "it"
-draft: true
+draft: false
 ---
 
-Non so quanto sia stato difficile leggere la roba di prima, ma adesso vediamo di venire a noi, cioè iniziamo a parlare di sicurezza 
+Non so quanto sia stato difficile leggere la roba di prima, ma dobbiamo andare avanti ancora un pochino.
 
 Ok breve recap. anzi no. In soldoni eravamo arrivati qui.
 

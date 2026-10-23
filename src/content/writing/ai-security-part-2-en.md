@@ -212,6 +212,8 @@ Or again:
 
 for twenty, fifty, a hundred, A THOUSAND steps. Gianni! A thousand steps!
 
+*For non-Italians: Ing.Cane (Engineer Dog) is a character played by Italian comedian Fabio De Luigi. He barely knows the Pythagorean theorem, yet he designs bridges and stuff using ridiculously huge numbers.*
+
 ![tanti numeri](https://www.emugifs.net/wp-content/uploads/2021/01/Ingenier-Cane-Mille-GIF-Fabio-De-Luigi-in-TV-a-Mai-Dire-Gol-con-la-Gialappa-s-Band.gif)
 
 That difference matters a lot.

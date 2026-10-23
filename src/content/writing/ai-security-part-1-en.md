@@ -147,7 +147,7 @@ And here we get to another stupid but, apparently, necessary word: inference.
 
 ## Inference
 
-To infer — not to *inflict* — comes from the Latin *inferre*: to draw something out of what we have available.
+To infer comes from the Latin *inferre*: to draw something out of what we have available.
 
 But careful not to translate it mentally simply as “deduce”: we're not saying the model necessarily does logical deduction (quite the opposite).
 ![](https://scontent-mxp2-1.xx.fbcdn.net/v/t39.30808-6/498242714_9709716825772770_6919300669561488707_n.jpg?stp=dst-jpg_tt6&cstp=mx720x960&ctp=s720x960&_nc_cat=104&ccb=1-7&_nc_sid=aa7b47&_nc_ohc=xpvgQg7XdNEQ7kNvwEmtywA&_nc_oc=AdrooZ-1nftnYJ73J-oW-A23v_Ns1LKYodwge1CnHcR_ywfU_wd_dQ_fLsKkPxuT0bE&_nc_zt=23&_nc_ht=scontent-mxp2-1.xx&_nc_gid=U4yKtzCLZRPP6zk6bJL73A&_nc_ss=7b289&oh=00_AQMQ5rUtXL_wTl9V1BlfhwTIvDgiKJugdWfMWMwWl7q_QA&oe=6ADF1A07)
@@ -214,7 +214,7 @@ If we asked:
 
 the retriever might have pulled from our repository the piece of document that contains the procedure.
 
-In all of this there's scaffolding that governs the various pieces — what is often called the ***harness***, literally the scaffolding around the model.
+In all of this there's scaffolding that governs the various pieces — what is often called the ***harness***, basically the scaffolding around the model.
 
 Don't think of anything mystical: it can simply be our “parent” program, maybe written in Python, that contains functions, configuration, and application logic and talks to the runtime. But not only that.
 
@@ -242,7 +242,7 @@ We have ***not*** modified its weights.
 We simply put more stuff in front of it before asking it to answer.
 
 ___
-And now we laugh… but if I have 600,000 documents, how does the retriever figure out which piece is the most sensible one to grab?
+Easy. Except... what if I have 600,000 documents? How does the retriever figure out which piece is the most sensible one to grab?
 
 Obviously we introduce *another* model.
 
@@ -323,4 +323,4 @@ We're looking at software that makes probabilistic decisions, uses tools, access
 
 That is, finally, something an old cybersecurity hand already knows how to look at with suspicion.
 
-See you in part 2? That would be nice.
+See you in part 2?

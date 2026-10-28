@@ -3,7 +3,7 @@ title: "Hey Ahi Security - A Manual for Grumpy Old IT Pros — Part II - Now We 
 description: "When it stops answering and starts acting."
 pubDate: 2026-10-23
 language: "en"
-draft: false
+draft: true
 ---
 
 I don’t know how painful Part I was, but let’s keep going.

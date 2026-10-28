@@ -3,7 +3,7 @@ title: "Hey Ahi Security - Manuale per vecchi barbogi — Parte II - Adesso diam
 description: "Quando smette di rispondere e inizia ad agire."
 pubDate: 2026-10-23
 language: "it"
-draft: false
+draft: true
 ---
 
 Non so quanto sia stato difficile leggere la roba di prima, ma dobbiamo andare avanti ancora un pochino.

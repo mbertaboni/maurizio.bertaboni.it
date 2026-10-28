@@ -29,7 +29,7 @@ Poi però prendiamo la macchina che abbiamo provato a "smontare" nelle prime due
 
 A questo punto dobbiamo chiederci chi può influenzare le decisioni del sistema, quali azioni può compiere, con quali autorizzazioni e quanto danno può fare prima che qualcuno si accorga che sta succedendo qualcosa di strano.
 
-La CIA resta utile (*eheh*). Ma per applicarla dobbiamo prima capire dove passano i trust boundary.
+La CIA resta utile (*eheh*). Ma per applicarla dobbiamo prima capire dove passano i "confini di fiducia" trust boundary
 
 Perchè ecco.. un documento recuperato via RAG non è necessariamente attendibile solo perché compare nel contesto, così come una pagina web non diventa un'istruzione autorizzata solo perché il modello la sta navigando. 
 Un tool non dovrebbe poter fare tutto quello che può fare soltanto perché l'agente ha deciso di chiamarlo e un componente scaricato da Internet non diventa affidabile perché qualcuno lo ha chiamato *skill* invece che script.
@@ -110,7 +110,7 @@ Se un agente può raggiungere un servizio, leggere un segreto o eseguire un'oper
 
 Forse gli abbiamo semplicemente preparato un laboratorio con una porta sul retro, le chiavi appese all'ingresso e un cartello che dice «non uscire».
 
-Se questa storia vi sembra familiare, non è perché gli incidenti di sicurezza si somiglino tutti. È perché una versione molto concreta di questa sequenza è già successa: il caso che ha coinvolto Hugging Face nel luglio 2026, durante una valutazione di sicurezza con agenti AI.
+Se questa storia vi sembra costruita apposta per l'esempio, purtroppo abbiamo già qualcosa di molto simile nel mondo reale. Nel luglio 2026, durante valutazioni interne di cybersecurity di OpenAI, alcuni agenti sono riusciti ad aggirare controlli di isolamento, ottenere accesso a Internet e raggiungere sistemi di Hugging Face. La cosa interessante, ai fini del nostro discorso, non è quanto fosse "intelligente" il modello. È la catena di *possibilità* che il sistema gli aveva messo davanti.
 
 La fantascienza, come spesso accade, non c'entra. I permessi, invece, c'entrano eccome.
 
@@ -124,9 +124,11 @@ Qui la triade CIA ci aiuta a classificare le conseguenze, ma il controllo delle 
 
 ### Supply chain di modelli, runtime, skill e tool
 
-Un *sistema* AI non è soltanto un modello. È un insieme di tanta roba; componenti software, dipendenze, servizi e integrazioni.
+Un *sistema* AI non è soltanto un modello. È un insieme di tanta roba: componenti software, dipendenze, servizi e integrazioni.
 
 C'è il runtime che carica il modello, ci sono le librerie, i pacchetti, gli strumenti, le skill, i plugin e gli eventuali server che espongono tool. Ognuno di questi elementi ha una provenienza, una versione e un livello di fiducia che non dovremmo dare per scontati.
+
+Non è molto *sexy* come argomento. Anzi, *supply chain* fa pensare ad una gran rottura spesso inevitabile. Proviamo però a spenderci giusto due parole, soprattutto su qualche concetto.
 
 La parola skill, per esempio, da sola, non dice nulla sulla sicurezza.
 
@@ -159,15 +161,15 @@ Con sistemi composti da più passaggi dobbiamo poter ricostruire, per quanto pos
 
 Quindi registriamo **TUTTO**
 
-Eh no perchè i log possono anche contenere dati personali e informazioni riservate; diventando a loro volta un oggetto da proteggere. Servono quindi criteri di minimizzazione, accessi controllati, integrità delle registrazioni e tempi di conservazione appropriati.
+Eh no. Perchè i log possono anche contenere dati personali e informazioni riservate diventando a loro volta un oggetto da proteggere. Servono quindi criteri di minimizzazione, accessi controllati, integrità delle registrazioni e tempi di conservazione appropriati.
 
-Attenzione, non sappiamo mai con certezza il perchè il modello compia certe decisioni, ma la differenza è tra avere un sistema che ha fatto qualcosa di *inatteso* e avere un sistema di cui non sappiamo nemmeno ricostruire la sequenza degli eventi.
+Attenzione: non sappiamo necessariamente perché il modello arrivi a una certa decisione, ma la differenza è tra avere un sistema che ha fatto qualcosa di *inatteso* e avere un sistema di cui non sappiamo nemmeno ricostruire la sequenza degli eventi.
 
 Il monitoraggio deve inoltre considerare costi, frequenza delle chiamate, loop, errori e comportamenti anomali. Non soltanto perché un attacco può compromettere il servizio, ma perché anche un sistema legittimo può comportarsi in modo incontrollato.
 
 ## I fondamentali non sono spariti
 
-E secondo me qui casca l'asino che fa cascare un po' tutto. Perché ok, sì, la CIA, ma forse non basta più.
+E secondo me qui casca l'asino che fa cascare un po' tutto. Perché ok, sì, la CIA è ancora lì. Solo che non ci dice come siamo finiti nei guai.
 
 Tra cani, apprendimento e tutto questo *pensare*, viene facile immaginare l'AI come l'ennesima persona da controllare. È il collega secchione che però può sbagliare e fare clic. Viene facile attribuirgli una personalità: in fondo ragiona, prende decisioni e forse ha pure capacità di giudizio, no?
 
@@ -179,7 +181,9 @@ Toh, il modello ha cancellato il database.
 
 «Eh… avrà preso una decisione sbagliata.»
 
-No. Il database è stato cancellato perché un sistema gli ha permesso di arrivare a quell'azione senza controlli sufficienti.
+Magari sì.
+
+La domanda interessante, però, è un'altra: perché avevamo costruito un sistema nel quale quella decisione poteva cancellare il database?
 
 Eppure, in questi sistemi, non basta nemmeno fermarsi qui e ripetere il solito elenco: autorizzazioni, isolamento, minimo privilegio, logging. Servono tutti, ovviamente. Ma dobbiamo anche capire *come* ci siamo arrivati.
 
@@ -187,7 +191,7 @@ Un contenuto esterno ha influenzato il modello. Il modello ha interpretato quel 
 
 Non stiamo più valutando soltanto se una funzione, preso un input, produce l'output previsto. Dobbiamo considerare anche le sequenze di interazioni che possono emergere, le decisioni che vengono influenzate dal contesto e le azioni che diventano possibili lungo il percorso.
 
-La CIA ci aiuta a classificare ciò che rischiamo di perdere o compromettere. I fondamentali della sicurezza ci aiutano a proteggere dati, sistemi e operazioni. Ma dobbiamo applicarli a un'architettura in cui il linguaggio può influenzare il comportamento e quel comportamento può avere conseguenze operative.
+Insomma, la CIA è ancora lì. Solo che adesso, tra ciò che vogliamo proteggere e ciò che può comprometterlo, abbiamo infilato modelli, contesto, tool e qualche decisione probabilistica.
 
 Non è una ragione per buttare via quello che sappiamo. È una ragione per smettere di dare per scontato che un modello convincente sia anche un modello affidabile, che un contenuto pertinente sia attendibile o che una decisione plausibile sia autorizzata.
 

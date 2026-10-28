@@ -1,7 +1,7 @@
 ---
 title: "Hey Ahi Security - Manuale per vecchi barbogi — Parte I - Smontiamo la macchina"
 description: "LLM, runtime, tokenizer, embedding, RAG, harness e agent: smontiamo la macchina prima di provare a metterla in sicurezza."
-pubDate: 2026-10-21
+pubDate: 2026-10-27
 language: "it"
 draft: false
 ---
